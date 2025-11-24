@@ -9,6 +9,7 @@ menv=$4
 
 pacman --noconfirm -S --needed \
     base-devel \
+    mingw-w64-${menv}-cairo \
     mingw-w64-${menv}-toolchain \
     mingw-w64-${menv}-xpm-nox \
     mingw-w64-${menv}-gmp \
@@ -18,6 +19,7 @@ pacman --noconfirm -S --needed \
     mingw-w64-${menv}-libpng \
     mingw-w64-${menv}-libjpeg-turbo \
     mingw-w64-${menv}-librsvg \
+    mingw-w64-${menv}-libunistring \
     mingw-w64-${menv}-libwebp \
     mingw-w64-${menv}-lcms2 \
     mingw-w64-${menv}-libxml2 \
@@ -37,7 +39,7 @@ git clone --depth=1 --branch ${repo_branch} https://github.com/emacsmirror/emacs
 install_dir=/c/programs/emacs
 cd /c/emacs/emacs-repo
 ./autogen.sh
-./configure --prefix=${install_dir} ${native_comp} --with-gnutls --with-xpm --with-tree-sitter --without-dbus --without-pop
+./configure --prefix=${install_dir} ${native_comp} --with-gnutls --with-xpm --with-cairo --with-tree-sitter --without-dbus --without-pop
 NPROC=$(nproc)
 make -j${NPROC}
 make install
